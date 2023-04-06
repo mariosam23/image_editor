@@ -1,0 +1,63 @@
+Sampetru Mario 311CA
+
+	Pentru rezolvarea acestei probleme m-am gandit sa utilizez 4 structuri:
+una pentru a salva caracteristicile imaginii in format ascii, una pentru a
+salva caracteristicile imaginii in format binar, plus inca doua structuri
+pentru zona selectata corespunzatoare tipului de imagine.
+	Pentru o mai buna structurare, functiile specifice fiecarei comenzi au
+fost incluse intr-un header.
+
+		--Comanda LOAD--
+
+	Se atribuie valori campurilor structurii corespunzatoare tipului de
+imagine, rezultate in urma parsarii fisierului, si se elibereaza memoria
+alocata pentru imaginea anterioara, daca aceasta exista.
+
+		--Comanda SELECT--
+
+	Se copiaza datele din imaginea initiala, in functie de coordonatele
+selectate in cadrul comenzii "SELECT".
+
+		--Comanda HISTOGRAM--
+
+	Se calculeaza lungimea fiecarui interval, in functie de numarul de
+intervale dorit de utilizator. Apoi se calculeaza frecventa maxima pe
+fiecare lungime de interval, ca mai apoi sa se afiseze histograma conform
+formulei din enuntul temei.
+
+		--Comanda EQUALIZE--
+
+	Am folosit un vector care calculeaza noua valoare a pixelilor in
+functie de formula. Apoi toti pixelii din matrice sunt inlocuiti cu noua
+valoare.
+
+		--Comanda ROTATE--
+
+	Am alocat memorie pentru o noua matrice in care voi salva rezultatul
+rotirii. Se parcurge matricea initiala pe coloane, incepand cu elementul
+din coltul din stanga jos, copiind in acest mod coloana i din matricea
+initiala in linia i din matricea rotita. Astfel, se realizeaza rotirea spre
+dreapta cu 90 de grade. Am realizat doar functia pentru rotire spre dreapta
+cu 90 de grade, deoarece celelate rotiri la diferite grade pot fi realizate
+in urma mai multor rotiri spre dreapta la 90.
+
+		--Comanda APPLY--
+
+	M-am folosit de matricea initiala pentru a avea pixelii in forma nemodifi-
+cata si de matricea selectiei pentru a salva rezultatul in urma aplicarii
+comenzii. Pentru fiecare pixel, din matrice verific daca are suficienti
+vecini pentru a-l incadra intr-o matrice 3x3, in caz contrar il las nemodifi-
+cat. Daca reusesc sa-l incadrez, aplic formula de modificare a acestuia.
+In final, copiez elementele din matricea selectiei in matricea imaginii la
+pozitiile corespunzatoare.
+
+		--Comanda SAVE--
+
+	Scriu in interiorul fisierului primit datele corespunzatoare din structura
+imaginii.
+
+		--Comanda EXIT--
+
+	Se elibereaza toata memoria alocata pentru imaginea incarcata in memorie
+(daca aceasta exista) si se iese din program.
+
